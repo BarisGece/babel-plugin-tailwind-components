@@ -8,6 +8,7 @@ import defaultTailwindConfig from 'tailwindcss/stubs/defaultConfig.stub.js'
 import addImport from './addImport.js'
 import getStyles from './getStyles.js'
 import replaceWithLocation from './replaceWithLocation.js'
+import { name as packageName } from '../package.json'
 
 export default createMacro(
   ({ babel: { types: t }, references, state, config }) => {
@@ -16,7 +17,7 @@ export default createMacro(
     let configFile = config && config.config
     let configPath = resolve(sourceRoot, configFile || './tailwind.config.js')
     let configExists = existsSync(configPath)
-
+    
     if (configFile && !configExists) {
       throw new Error(`Couldn’t find Tailwind config ${configPath}`)
     }
@@ -144,7 +145,7 @@ export default createMacro(
         'body',
         t.importDeclaration(
           [t.importDefaultSpecifier(state.tailwindUtilsIdentifier)],
-          t.stringLiteral('tailwind.macro/utils.umd.js')
+          t.stringLiteral(`${packageName}/utils.umd.js`)
         )
       )
     }
