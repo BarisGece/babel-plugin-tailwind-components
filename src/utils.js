@@ -1,8 +1,12 @@
 import resolveTailwindConfig from 'tailwindcss/lib/util/resolveConfig.js'
 import defaultTailwindConfig from 'tailwindcss/stubs/defaultConfig.stub.js'
+import processPlugins from 'tailwindcss/lib/util/processPlugins.js'
 import dlv from 'dlv'
+import dset from 'dset'
 
 let resolvedConfig
+
+let pluginClassNames
 
 export function resolveConfig(config) {
   if (resolvedConfig) return resolvedConfig
@@ -74,4 +78,37 @@ function flattenColors(colors) {
     }
   }
   return result
+}
+
+export function resolveStyleFromPlugins(config, className) {
+  if (!pluginClassNames) {
+    pluginClassNames = {}
+
+    if (config.plugins && config.plugins.length) {
+      processPlugins(config.plugins, config).utilities.forEach(function(rule) {
+        if (rule.type !== 'atrule' || rule.name !== 'variants') {
+          return
+        }
+        rule.each(function(x) {
+          var match = x.selector.match(/^\.(\S+)(\s+.*?)?$/)
+          if (match === null) {
+            return
+          }
+          var name = match[1]
+          var rest = match[2]
+          var keys = rest ? [name, rest.trim()] : [name]
+          dset(pluginClassNames, keys, {})
+          x.walkDecls(function(decl) {
+            dset(pluginClassNames, keys.concat(decl.prop), decl.value)
+          })
+        })
+      })
+    }
+  }
+
+  if (typeof pluginClassNames[className] === 'undefined') {
+    throw new Error('Couldn’t resolve Tailwind class name: ' + className)
+  }
+
+  return pluginClassNames[className]
 }

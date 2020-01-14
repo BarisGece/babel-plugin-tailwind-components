@@ -2,7 +2,11 @@ import dset from 'dset'
 import dlv from 'dlv'
 import staticStyles from './staticStyles.js'
 import dynamicStyles from './dynamicStyles.js'
-import { stringifyScreen, resolveStyle } from './utils.js'
+import {
+  stringifyScreen,
+  resolveStyle,
+  resolveStyleFromPlugins
+} from './utils.js'
 import astify from './astify.js'
 import assignify from './assignify.js'
 
@@ -128,7 +132,23 @@ export default function getStyles(str, t, state) {
         return { ...acc, ...obj }
       }
     } else {
-      throw new Error(`Couldn’t resolve Tailwind class name: ${className}`)
+      let obj = state.isProd
+        ? resolveStyleFromPlugins(state.config, className)
+        : {
+            ['__spread__' + index]:
+              state.tailwindUtilsIdentifier.name +
+              '.resolveStyleFromPlugins(' +
+              state.tailwindConfigIdentifier.name +
+              ', "' +
+              className +
+              '")'
+          }
+      if (modifiers.length) {
+        dset(acc, modifiers, { ...dlv(acc, modifiers, {}), ...obj })
+        return acc
+      } else {
+        return { ...acc, ...obj }
+      }
     }
   }, {})
 
