@@ -1,19 +1,19 @@
-let pluginTester = require('babel-plugin-tester')
-let plugin = require('babel-plugin-macros')
-let path = require('path')
-let glob = require('glob-all')
-let fs = require('fs')
-let prettier = require('prettier')
+const pluginTester = require('babel-plugin-tester').default
+const plugin = require('babel-plugin-macros')
+const path = require('path')
+const glob = require('glob-all')
+const fs = require('fs')
+const prettier = require('prettier')
 
 pluginTester({
   plugin,
-  pluginName: 'tailwind.macro',
-  babelOptions: {
-    filename: __filename,
+  pluginName: 'tailwind-canary.macro',
+  babelOptions: {   
+    filename: __filename, 
     babelrc: true
   },
   snapshot: false,
-  formatResult(code) {
+  formatResult: code => {
     return prettier
       .format(code, {
         parser: 'babel',
