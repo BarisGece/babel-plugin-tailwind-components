@@ -3,6 +3,7 @@ import defaultTailwindConfig from 'tailwindcss/stubs/defaultConfig.stub.js'
 import processPlugins from 'tailwindcss/lib/util/processPlugins.js'
 import dlv from 'dlv'
 import dset from 'dset'
+import container from 'tailwindcss/lib/plugins/container'
 
 let resolvedConfig
 
@@ -84,13 +85,10 @@ export function resolveStyleFromPlugins(config, className) {
   if (!pluginClassNames) {
     pluginClassNames = {}
 
-    if (config.plugins && config.plugins.length) {
-      processPlugins(config.plugins, config).utilities.forEach(function(rule) {
-        if (rule.type !== 'atrule' || rule.name !== 'variants') {
-          return
-        }
-        rule.each(function(x) {
-          var match = x.selector.match(/^\.(\S+)(\s+.*?)?$/)
+    if ('container' in config.theme) {
+      processPlugins([container()], config).components.forEach(rule => {
+        if (rule.type === 'rule' && rule.selector === '.container') {
+          var match = rule.selector.match(/^\.(\S+)(\s+.*?)?$/)
           if (match === null) {
             return
           }
@@ -98,7 +96,34 @@ export function resolveStyleFromPlugins(config, className) {
           var rest = match[2]
           var keys = rest ? [name, rest.trim()] : [name]
           dset(pluginClassNames, keys, {})
-          x.walkDecls(function(decl) {
+          rule.walkDecls(decl => {
+            dset(pluginClassNames, keys.concat(decl.prop), decl.value)
+          })
+        } else if (rule.type === 'atrule' && rule.name === 'media') {
+          throw new Error(
+            'Container Screen Property is not supported. Please use theme screens'
+          )
+        } else {
+          return
+        }
+      })
+    }
+
+    if (config.plugins && config.plugins.length) {
+      processPlugins(config.plugins, config).utilities.forEach(function(rule) {
+        if (rule.type !== 'atrule' || rule.name !== 'variants') {
+          return
+        }
+        rule.each(node => {
+          var match = node.selector.match(/^\.(\S+)(\s+.*?)?$/)
+          if (match === null) {
+            return
+          }
+          var name = match[1]
+          var rest = match[2]
+          var keys = rest ? [name, rest.trim()] : [name]
+          dset(pluginClassNames, keys, {})
+          node.walkDecls(decl => {
             dset(pluginClassNames, keys.concat(decl.prop), decl.value)
           })
         })
