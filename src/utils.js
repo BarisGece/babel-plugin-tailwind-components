@@ -97,13 +97,19 @@ export function resolveStyleFromPlugins(config, className) {
           var keys = rest ? [name, rest.trim()] : [name]
           dset(pluginClassNames, keys, {})
           rule.walkDecls(decl => {
-            dset(pluginClassNames, keys.concat(decl.prop), decl.value)
+            dset(
+              pluginClassNames,
+              keys.concat(
+                decl.prop.replace(/(\u002D\w)/g, m => {
+                  return m[1].toUpperCase()
+                })
+              ),
+              decl.value
+            )
           })
-        } else if (rule.type === 'atrule' && rule.name === 'media') {
-          throw new Error(
-            'Container Screen Property is not supported. Please use theme screens'
-          )
         } else {
+        /* else if (rule.type === 'atrule' && rule.name === 'media') { TO BE HANDLED
+        throw new Error('Container Screen Property is not supported. Please use theme screens')}*/
           return
         }
       })
