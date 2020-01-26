@@ -1,4 +1,59 @@
 let dynamicStyles = {
+  // CSS Grid utilities added - https://github.com/tailwindcss/tailwindcss/pull/1274
+  // columnGap.js
+  // gap.js
+  // gridColumn.js
+  // gridColumnEnd.js
+  // gridRow.js
+  // gridRowEnd.js
+  // gridRowStart.js
+  // gridTemplateColumns.js
+  // gridTemplateRows.js
+  // rowGap.js
+  'col-gap': { prop: ['gridColumnGap', 'columnGap'], config: 'columnGap' },
+  gap: { prop: ['gridGap', 'gap'], config: 'gap' },
+  col: { prop: 'gridColumn', config: 'gridColumn' },
+  'col-end': { prop: 'gridColumnEnd', config: 'gridColumnEnd' },
+  'col-start': { prop: 'gridColumnStart', config: 'gridColumnStart' },
+  row: { prop: 'gridRow', config: 'gridRow' },
+  'row-end': { prop: 'gridRowEnd', config: 'gridRowEnd' },
+  'row-start': { prop: 'gridRowStart', config: 'gridRowStart' },
+  'grid-cols': { prop: 'gridTemplateColumns', config: 'gridTemplateColumns' },
+  'grid-rows': { prop: 'gridTemplateRows', config: 'gridTemplateRows' },
+  'row-gap': { prop: ['gridRowGap', 'rowGap'], config: 'rowGap' },
+
+  // Composable transform utilities added - https://github.com/tailwindcss/tailwindcss/pull/1272
+  // rotate.js
+  // scale.js
+  // transformOrigin.js
+  // translate.js
+  rotate: { prop: '--transform-rotate', config: 'rotate' },
+  scale: {
+    prop: ['--transform-scale-x', '--transform-scale-y'],
+    config: 'scale'
+  },
+  'scale-x': { prop: '--transform-scale-x', config: 'scale' },
+  'scale-y': { prop: '--transform-scale-y', config: 'scale' },
+  origin: { prop: 'transformOrigin', config: 'transformOrigin' },
+  'translate-x': { prop: '--transform-translate-x', config: 'translate' },
+  'translate-y': { prop: '--transform-translate-y', config: 'translate' },
+
+  // Skew plugin added - https://github.com/tailwindcss/tailwindcss/pull/1292
+  // skew.js
+  'skew-x': { prop: '--transform-skew-x', config: 'skew' },
+  'skew-y': { prop: '--transform-skew-y', config: 'skew' },
+
+  // Transition utilities added - https://github.com/tailwindcss/tailwindcss/pull/1273
+  // transitionDuration.js
+  // transitionProperty.js
+  // transitionTimingFunction.js
+  duration: { prop: 'transitionDuration', config: 'transitionDuration' },
+  transition: { prop: 'transitionProperty', config: 'transitionProperty' },
+  ease: {
+    prop: 'transitionTimingFunction',
+    config: 'transitionTimingFunction'
+  },
+
   // backgroundColor.js - https://tailwindcss.com/docs/background-color
   // backgroundPosition.js - https://tailwindcss.com/docs/background-position/
   // backgroundSize.js - https://tailwindcss.com/docs/background-size
