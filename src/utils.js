@@ -62,7 +62,7 @@ export function resolveStyle(config, opts, key) {
       }
     }
   }
-
+  console.log('Undefined Modifier : ' + key)
   return {}
 }
 
@@ -108,7 +108,7 @@ export function resolveStyleFromPlugins(config, className) {
             )
           })
         } else {
-        /* else if (rule.type === 'atrule' && rule.name === 'media') { TO BE HANDLED
+          /* else if (rule.type === 'atrule' && rule.name === 'media') { TO BE HANDLED
         throw new Error('Container Screen Property is not supported. Please use theme screens')}*/
           return
         }

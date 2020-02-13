@@ -1,28 +1,5 @@
 let staticStyles = {
-  // Composable transform utilities added - https://github.com/tailwindcss/tailwindcss/pull/1272
-  // transform.js
-  transform: {
-    '--transform-translate-x': '0',
-    '--transform-translate-y': '0',
-    '--transform-rotate': '0',
-    '--transform-skew-x': '0',
-    '--transform-skew-y': '0',
-    '--transform-scale-x': '1',
-    '--transform-scale-y': '1',
-    transform: [
-      'translateX(var(--transform-translate-x))',
-      'translateY(var(--transform-translate-y))',
-      'rotate(var(--transform-rotate))',
-      'skewX(var(--transform-skew-x))',
-      'skewY(var(--transform-skew-y))',
-      'scaleX(var(--transform-scale-x))',
-      'scaleY(var(--transform-scale-y))'
-    ].join(' ')
-  },
-  'transform-none': { transform: 'none' },
-
   // accessibility.js - https://tailwindcss.com/docs/screen-readers
-  // Screen readers utilities added
   'sr-only': {
     position: 'absolute',
     width: '1px',
@@ -75,7 +52,6 @@ let staticStyles = {
   'bg-scroll': { backgroundAttachment: 'scroll' },
 
   // backgroundRepeat.js - https://tailwindcss.com/docs/background-repeat
-  // bg-repeat-round and bg-repeat-space utilities added
   'bg-repeat': { backgroundRepeat: 'repeat' },
   'bg-no-repeat': { backgroundRepeat: 'no-repeat' },
   'bg-repeat-x': { backgroundRepeat: 'repeat-x' },
@@ -87,54 +63,50 @@ let staticStyles = {
   'border-collapse': { borderCollapse: 'collapse' },
   'border-separate': { borderCollapse: 'separate' },
 
-  // https://tailwindcss.com/docs/border-style
-  // border-double utility added
+  // borderStyle.js - https://tailwindcss.com/docs/border-style
   'border-solid': { borderStyle: 'solid' },
   'border-dashed': { borderStyle: 'dashed' },
   'border-dotted': { borderStyle: 'dotted' },
   'border-double': { borderStyle: 'double' },
   'border-none': { borderStyle: 'none' },
 
-  // boxSizing.js - No Documentation Link
-  // boxSizing utilities added
+  // boxSizing.js - https://tailwindcss.com/docs/box-sizing
   'box-border': { boxSizing: 'border-box' },
   'box-content': { boxSizing: 'content-box' },
 
-  // clear.js - No Documentation Link
-  // clear utilities added
+  // clear.js - http://tailwindcss.com/docs/clear
   'clear-left': { clear: 'left' },
   'clear-right': { clear: 'right' },
   'clear-both': { clear: 'both' },
 
   // display.js - https://tailwindcss.com/docs/display
-  // New table and grid utilities added
-  block: { display: 'block' },
   'inline-block': { display: 'inline-block' },
-  inline: { display: 'inline' },
-  flex: { display: 'flex' },
   'inline-flex': { display: 'inline-flex' },
-  grid: { display: 'grid' },
-  table: { display: 'table' },
   'table-caption': { display: 'table-caption' },
   'table-cell': { display: 'table-cell' },
-  'table-column': { display: 'table-column' },
   'table-column-group': { display: 'table-column-group' },
+  'table-column': { display: 'table-column' },
   'table-footer-group': { display: 'table-footer-group' },
   'table-header-group': { display: 'table-header-group' },
   'table-row-group': { display: 'table-row-group' },
   'table-row': { display: 'table-row' },
+  inline: { display: 'inline' },
+  block: { display: 'block' },
+  flex: { display: 'flex' },
+  grid: { display: 'grid' },
+  table: { display: 'table' },
   hidden: { display: 'none' },
 
   // flexDirection.js - https://tailwindcss.com/docs/flexbox-direction
-  'flex-row': { flexDirection: 'row' },
   'flex-row-reverse': { flexDirection: 'row-reverse' },
-  'flex-col': { flexDirection: 'column' },
+  'flex-row': { flexDirection: 'row' },
   'flex-col-reverse': { flexDirection: 'column-reverse' },
+  'flex-col': { flexDirection: 'column' },
 
   // flexWrap.js - https://tailwindcss.com/docs/flex-wrap
-  'flex-no-wrap': { flexWrap: 'nowrap' },
-  'flex-wrap': { flexWrap: 'wrap' },
   'flex-wrap-reverse': { flexWrap: 'wrap-reverse' },
+  'flex-wrap': { flexWrap: 'wrap' },
+  'flex-no-wrap': { flexWrap: 'nowrap' },
 
   // float.js - https://tailwindcss.com/docs/float
   'float-right': { float: 'right' },
@@ -142,29 +114,27 @@ let staticStyles = {
   'float-none': { float: 'none' },
   clearfix: { '::after': { content: '""', display: 'table', clear: 'both' } },
 
-  // fontSmoothing.js - https://tailwindcss.com/docs/font-smoothing/
-  antialiased: {
-    WebkitFontSmoothing: 'antialiased',
-    MozOsxFontSmoothing: 'grayscale'
-  },
+  // fontSmoothing.js - https://tailwindcss.com/docs/font-smoothing
   'subpixel-antialiased': {
     WebkitFontSmoothing: 'auto',
     MozOsxFontSmoothing: 'auto'
   },
+  antialiased: {
+    WebkitFontSmoothing: 'antialiased',
+    MozOsxFontSmoothing: 'grayscale'
+  },
 
-  // fontStyle.js - https://tailwindcss.com/docs/font-style/
-  italic: { fontStyle: 'italic' },
+  // fontStyle.js - https://tailwindcss.com/docs/font-style
   'not-italic': { fontStyle: 'normal' },
+  italic: { fontStyle: 'italic' },
 
-  // gridAutoFlow.js - No Documentation Link
-  // gridAutoFlow utilities added
-  'grid-flow-row': { gridAutoFlow: 'row' },
-  'grid-flow-col': { gridAutoFlow: 'column' },
+  // gridAutoFlow.js - https://tailwindcss.com/docs/grid-auto-flow
   'grid-flow-row-dense': { gridAutoFlow: 'row dense' },
+  'grid-flow-row': { gridAutoFlow: 'row' },
   'grid-flow-col-dense': { gridAutoFlow: 'column dense' },
+  'grid-flow-col': { gridAutoFlow: 'column' },
 
   // justifyContent.js - https://tailwindcss.com/docs/justify-content
-  // justify-evenly utility added
   'justify-start': { justifyContent: 'flex-start' },
   'justify-end': { justifyContent: 'flex-end' },
   'justify-center': { justifyContent: 'center' },
@@ -215,9 +185,9 @@ let staticStyles = {
 
   // resize.js - https://tailwindcss.com/docs/resize
   'resize-none': { resize: 'none' },
-  resize: { resize: 'both' },
   'resize-y': { resize: 'vertical' },
   'resize-x': { resize: 'horizontal' },
+  resize: { resize: 'both' },
 
   // tableLayout.js - https://tailwindcss.com/docs/table-layout
   'table-auto': { tableLayout: 'auto' },
@@ -229,19 +199,39 @@ let staticStyles = {
   'text-right': { textAlign: 'right' },
   'text-justify': { textAlign: 'justify' },
 
-  // textDecoration.js - https://tailwindcss.com/docs/text-decoration/
-  underline: { textDecoration: 'underline' },
-  'line-through': { textDecoration: 'line-through' },
+  // textDecoration.js - https://tailwindcss.com/docs/text-decoration
   'no-underline': { textDecoration: 'none' },
+  'line-through': { textDecoration: 'line-through' },
+  underline: { textDecoration: 'underline' },
 
-  // textTransform.js - https://tailwindcss.com/docs/text-transform/
+  // textTransform.js - https://tailwindcss.com/docs/text-transform
+  'normal-case': { textTransform: 'none' },
   uppercase: { textTransform: 'uppercase' },
   lowercase: { textTransform: 'lowercase' },
   capitalize: { textTransform: 'capitalize' },
-  'normal-case': { textTransform: 'none' },
+
+  // transform.js
+  transform: {
+    '--transform-translate-x': '0',
+    '--transform-translate-y': '0',
+    '--transform-rotate': '0',
+    '--transform-skew-x': '0',
+    '--transform-skew-y': '0',
+    '--transform-scale-x': '1',
+    '--transform-scale-y': '1',
+    transform: [
+      'translateX(var(--transform-translate-x))',
+      'translateY(var(--transform-translate-y))',
+      'rotate(var(--transform-rotate))',
+      'skewX(var(--transform-skew-x))',
+      'skewY(var(--transform-skew-y))',
+      'scaleX(var(--transform-scale-x))',
+      'scaleY(var(--transform-scale-y))'
+    ].join(' ')
+  },
+  'transform-none': { transform: 'none' },
 
   // userSelect.js - https://tailwindcss.com/docs/user-select
-  // select-all and select-auto utilities added
   'select-none': { userSelect: 'none' },
   'select-text': { userSelect: 'text' },
   'select-all': { userSelect: 'all' },
@@ -262,12 +252,11 @@ let staticStyles = {
   // whitespace.js - https://tailwindcss.com/docs/whitespace
   'whitespace-normal': { whiteSpace: 'normal' },
   'whitespace-no-wrap': { whiteSpace: 'nowrap' },
-  'whitespace-pre': { whiteSpace: 'pre' },
-  'whitespace-pre-line': { whiteSpace: 'pre-line' },
   'whitespace-pre-wrap': { whiteSpace: 'pre-wrap' },
+  'whitespace-pre-line': { whiteSpace: 'pre-line' },
+  'whitespace-pre': { whiteSpace: 'pre' },
 
-  // https://tailwindcss.com/docs/word-break
-  // break-words ???
+  // wordBreak.js - https://tailwindcss.com/docs/word-break
   'break-normal': { wordBreak: 'normal', overflowWrap: 'normal' },
   'break-words': { overflowWrap: 'break-word' },
   'break-all': { wordBreak: 'break-all' },
