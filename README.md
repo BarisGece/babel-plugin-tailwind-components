@@ -1,22 +1,22 @@
-# babel-plugin-tailwind-components [![npm](https://img.shields.io/npm/v/babel-plugin-tailwind-components.svg)](https://www.npmjs.com/package/babel-plugin-tailwind-components) [![Babel Macro](https://img.shields.io/badge/babel--macro-%F0%9F%8E%A3-f5da55.svg?style=flat)](https://github.com/kentcdodds/babel-plugin-macros)
+# tailwind-canary.macro [![npm](https://img.shields.io/npm/v/tailwind-canary.macro/latest?color=orange&style=plastic)](https://www.npmjs.com/package/tailwind-canary.macro) [![Babel Macro](https://img.shields.io/badge/babel--macro-%F0%9F%8E%A3-f5da55.svg?style=plastic)](https://github.com/kentcdodds/babel-plugin-macros)
 
 > Use [Tailwind](https://tailwindcss.com/) with any CSS-in-JS library
 
 ## Prerequisites
 
-Before you start using babel-plugin-tailwind-components you will need to ensure that you have a [Tailwind config file](https://tailwindcss.com/docs/configuration). You can grab the default config from the [Tailwind repo](https://github.com/tailwindcss/tailwindcss/blob/master/defaultConfig.stub.js).
+Before you start using _tailwind-canary.macro_ you will need to ensure that you have a [Tailwind config file](https://tailwindcss.com/docs/configuration). You can grab the default config from the [Tailwind repo](https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js).
 
-Place the config file in your project root as `tailwind.js`. Alternatively you can specify a different filename in the [plugin options](#options).
+Place the config file in your project root as `tailwind.config.js`. Alternatively you can specify a different filename in the [plugin options](#options).
 
 ## Installation
 
 There are two ways to use babel-plugin-tailwind-components. The recommended way is via [babel-plugin-macros](https://github.com/kentcdodds/babel-plugin-macros):
 
-```
-npm install --save-dev babel-plugin-macros tailwind.macro
+```sh
+npm install --save-dev babel-plugin-macros tailwind-canary.macro
 ```
 
-> _Note: [tailwind.macro](https://github.com/bradlc/tailwind.macro) is merely an alias for [babel-plugin-tailwind-components/macro](https://github.com/bradlc/babel-plugin-tailwind-components/blob/master/src/macro.js)_
+> \_Note: The default branch is canary in [tailwind-canary.macro](https://github.com/BarisGece/tailwind-canary.macro/tree/canary)
 
 Then add babel-plugin-macros to your babel config:
 
@@ -28,11 +28,11 @@ Then add babel-plugin-macros to your babel config:
 
 > _Note: you will also need to install and enable `@babel/plugin-syntax-object-rest-spread` if you haven’t already_
 
-You can now use Tailwind classes with your preferred CSS-in-JS library by importing `tailwind.macro`:
+You can now use Tailwind classes with your preferred CSS-in-JS library by importing `tailwind-canary.macro`:
 
 ```js
 import styled from 'styled-components'
-import tw from 'tailwind.macro'
+import tw from 'tailwind-canary.macro'
 
 const Button = styled('button')`
   ${tw`font-mono text-sm text-red hover:text-blue`};
@@ -41,7 +41,7 @@ const Button = styled('button')`
 
 Alternatively, you can use the plugin without babel-plugin-macros:
 
-```
+```sh
 npm install --save-dev babel-plugin-tailwind-components
 ```
 
