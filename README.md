@@ -122,7 +122,7 @@ _Note: when using `hover:*`, `focus:*`, or media query (e.g. `sm:*`) class names
 
 ## Options
 
-`config`: path to your Tailwind config file. Defaults to `"./tailwind.js"`
+`config`: path to your Tailwind config file. Defaults to `"./tailwind.config.js"`
 
 `format`: CSS output format. `"object"`, `"string"`, or `"auto"` (default) – `"auto"` will cause the output to be an object except when inside a `<style>` element. See [how it works](#how-it-works) for more info.
 
@@ -130,7 +130,7 @@ _Note: when using `hover:*`, `focus:*`, or media query (e.g. `sm:*`) class names
 // babel-plugin-macros.config.js
 module.exports = {
   tailwind: {
-    config: './tailwind.js',
+    config: './tailwind.config.js',
     format: 'auto'
   }
 }
@@ -140,7 +140,7 @@ module.exports = {
   "plugins": [
     [
       "tailwind-components", {
-        "config": "./tailwind.js",
+        "config": "./tailwind.config.js",
         "format": "auto"
       }
     ]
@@ -154,7 +154,7 @@ module.exports = {
 
 ```js
 import styled from 'styled-components'
-import tw from 'tailwind.macro'
+import tw from 'tailwind-canary.macro'
 
 const Button = styled('button')`
   ${tw`font-mono text-sm text-red hover:text-blue`};
@@ -166,7 +166,7 @@ const Button = styled('button')`
 ```js
 import styled from 'preact-emotion'
 import { css } from 'emotion'
-import tw from 'tailwind.macro'
+import tw from 'tailwind-canary.macro'
 
 const green = css(tw`text-green`)
 
@@ -187,7 +187,7 @@ _Note: the `css` prop requires the use of [babel-plugin-emotion](https://github.
 
 ```js
 import { css } from 'glamor'
-import tw from 'tailwind.macro'
+import tw from 'tailwind-canary.macro'
 
 const style = css(tw`font-mono text-sm text-red hover:text-blue`)
 
@@ -197,7 +197,7 @@ const App = () => <div {...style}>hello, world</div>
 **[styled-jsx](https://github.com/zeit/styled-jsx)**
 
 ```js
-import tw from 'tailwind.macro'
+import tw from 'tailwind-canary.macro'
 
 const App = () => (
   <div>
@@ -215,7 +215,7 @@ _Note: when using `hover:*`, `focus:*`, or media query (e.g. `sm:*`) class names
 
 ## Todo
 
-- ~~support for the [container class](https://tailwindcss.com/docs/container); [in progress](https://github.com/bradlc/babel-plugin-tailwind-components/pull/2)~~ container is now a plugin and there is no plan to support plugins
+- ~~support for the [container class](https://tailwindcss.com/docs/container); [in progress](https://github.com/bradlc/babel-plugin-tailwind-components/pull/2). container is now supported~~
 - ~~support for multiple modifiers, e.g. `sm:hover:*`~~
 - ~~support for defaults; for example `rounded` should be an alias for `rounded-default`~~
 - add [CodeSandbox](https://codesandbox.io/) demos
